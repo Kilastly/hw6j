@@ -3,9 +3,9 @@ import java.util.Objects;
 public class Laptop {
     private String brand;
     private String model;
-    private short ramСapacity;
-    private short hddСapacity;
-    public Laptop (String brand, String model, short ramСapacity, short hddСapacity){
+    private int ramСapacity;
+    private int hddСapacity;
+    public Laptop (String brand, String model, int ramСapacity, int hddСapacity){
         this.brand = brand;
         this.model = model;
         this.ramСapacity = ramСapacity;
@@ -18,10 +18,10 @@ public class Laptop {
     public String getModel(){
         return model;
     }
-    public short getRamCapacity(){
+    public int getRamCapacity(){
         return ramСapacity;
     }
-    public short getHddCapacity(){
+    public int getHddCapacity(){
         return hddСapacity;
     }
 
@@ -43,7 +43,7 @@ public class Laptop {
         return "Производитель: " + brand + "\n" +
                "Модель: " + model + "\n" +
                "Объем ОЗУ: " + ramСapacity + "ГБ" + "\n" +
-               "Жесткий диск" + hddСapacity + "ГБ" + "\n";
+               "Жесткий диск: " + hddСapacity + "ГБ" + "\n";
     }
     @Override
     public boolean equals(Object obj) {
