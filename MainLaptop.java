@@ -37,30 +37,85 @@ public class MainLaptop {
             System.out.println(laptop);
         }
          
-        
+        System.out.println(choiceCriterias());
         
     }
-    public static Map Filter (HashSet<Laptop> laptops){
-        Map <Integer, Laptop> ld = new HashMap<Integer, Laptop>();
+
+    /*
+     * Map <Integer, Laptop> ld = new HashMap<Integer, Laptop>();
         int k = 0;  
         for (Laptop laptop : laptops) {
             ld.put(k, laptop);
             k++;
-        }     
+        }
+     */
+    public static Map <String, String> choiceCriterias (){
+        Map <String, String> criteria = new HashMap<>();     
         Scanner iScanner = new Scanner(System.in);
-        System.out.printf("Выберете критерий для сортировки:\n 1 Бренд \n 2 Модель \n 3 ОЗУ \n 4 Жесткий диск \n");
-        String str = iScanner.nextLine(); 
-
+        System.out.printf("Выберете критерий для сортировки:\n 1 Бренд \n 2 Модель \n 3 ОЗУ \n 4 Жесткий диск \n 0 Выход \n");
+        String str = iScanner.nextLine();
         switch (str) {
-            case "1":
-                
+            case "0":
                 break;
-        
-            default:
-                break;
+            case "1":{
+                System.out.printf("Введите бренд (или нажмите Enter для отмемы): \n");
+                String brand = iScanner.nextLine();
+                if (!brand.isEmpty()) {
+                    criteria.put("brand", brand);
+                    break;                   
+                }
+                else break;
+            }
+                case "2":{
+                    System.out.printf("Введите модель (или нажмите Enter для отмемы): \n");
+                    String model = iScanner.nextLine();
+                    if (!model.isEmpty()) {
+                        criteria.put("model", model);
+                        break; 
+                    }
+                    else break;
+            }
+            case "3":{
+                    System.out.printf("Введите минимальное количество ОЗУ (или нажмите Enter для отмемы): \n");
+                    String ramСapacity = iScanner.nextLine();
+                    if (!ramСapacity.isEmpty()) {
+                        try {
+                            Integer.parseInt(ramСapacity);
+                        }
+                        catch (NumberFormatException e) {
+                            System.out.println("Неверный формат количества ОЗУ: " + ramСapacity);
+                            break;
+                        }
+                        criteria.put("ramСapacity", ramСapacity);
+                        break;
+                    }
+                    else break;
+            }
+            case "4":{
+                    System.out.printf("Введите минимальный размер жесткого диска (или нажмите Enter для отмемы): \n");
+                    String hddСapacity = iScanner.nextLine();
+                    if (!hddСapacity.isEmpty()) {
+                        try {
+                            Integer.parseInt(hddСapacity);
+                        }
+                        catch (NumberFormatException e) {
+                            System.out.println("Неверный формат размера жесткого диска: " + hddСapacity);
+                            break;
+                        }
+                        criteria.put("hddСapacity", hddСapacity);
+                        break; 
+                    }
+                    else break;
+            }
+        default:
+            System.out.println("Неверный ввод!");
+            break;    
         }
         iScanner.close();
-        return ld;
+        return criteria;
     }
 
+
+
     }
+
