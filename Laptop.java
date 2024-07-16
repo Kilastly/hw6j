@@ -58,5 +58,6 @@ public class Laptop {
     @Override
     public int hashCode() {
         return Objects.hash(brand, model, ramСapacity, hddСapacity);
+        
     }
 }
