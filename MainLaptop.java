@@ -37,19 +37,13 @@ public class MainLaptop {
             System.out.println(laptop);
         }
          
-        System.out.println(choiceCriterias());
+        // System.out.println(ChoiceCriteria());
+        System.out.println(CollectCriterias());
         
     }
 
-    /*
-     * Map <Integer, Laptop> ld = new HashMap<Integer, Laptop>();
-        int k = 0;  
-        for (Laptop laptop : laptops) {
-            ld.put(k, laptop);
-            k++;
-        }
-     */
-    public static Map <String, String> choiceCriterias (){
+    
+    public static Map <String, String> ChoiceCriteria (){
         Map <String, String> criteria = new HashMap<>();     
         Scanner iScanner = new Scanner(System.in);
         System.out.printf("Выберете критерий для сортировки:\n 1 Бренд \n 2 Модель \n 3 ОЗУ \n 4 Жесткий диск \n 0 Выход \n");
@@ -66,7 +60,7 @@ public class MainLaptop {
                 }
                 else break;
             }
-                case "2":{
+            case "2":{
                     System.out.printf("Введите модель (или нажмите Enter для отмемы): \n");
                     String model = iScanner.nextLine();
                     if (!model.isEmpty()) {
@@ -111,11 +105,48 @@ public class MainLaptop {
             System.out.println("Неверный ввод!");
             break;    
         }
-        iScanner.close();
+        // iScanner.close();
         return criteria;
     }
 
-
+    public static Map <Integer, Map<String, String>> CollectCriterias(){
+        Map <Integer, Map <String, String>> criteriasCollection = new HashMap<>();
+        int position = 0;
+        Scanner iScanner = new Scanner(System.in);
+        System.out.printf("Выбрать критерии для поиска? 1 Да 0 Выход: \n");
+        String answer = iScanner.nextLine();
+        try {
+            Integer.parseInt(answer);
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Неверный ввод!");
+            iScanner.close();
+            return criteriasCollection;
+        }
+        switch (answer) {
+            case "0":
+                break;
+            case "1":
+                criteriasCollection.put(++position, ChoiceCriteria());
+                System.out.printf("Добавить еще один критерий? 1 Да, (или нажмите Enter для отмемы)\n");
+                String str = iScanner.nextLine();
+                if (!str.isEmpty() && str.equals("1")){
+                    criteriasCollection.put(++position, ChoiceCriteria());
+                    break;
+                }
+                else if (!str.isEmpty()){
+                    System.out.println("Неверный ввод!");
+                    iScanner.close();
+                    return criteriasCollection;
+                }
+                else if (str.isEmpty()){
+                    iScanner.close();
+                    return criteriasCollection;
+                } break;
+        }
+        iScanner.close();
+        return criteriasCollection;
+    }
 
     }
 
