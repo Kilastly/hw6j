@@ -38,13 +38,9 @@ public class MainLaptop {
             System.out.println(laptop);
         }
          
-        // System.out.println(ChoiceCriteria());
-        // System.out.println(CollectCriterias());
-        Map <Integer, Map<String, String>> temp = CollectCriterias();
-        // Map <String, String> criteriasColl = new HashMap<>();
-        // System.out.println(temp);
+           Map <Integer, Map<String, String>> temp = CollectCriterias();
+  
         for (Map <String, String> elem : temp.values()) {
-            // System.out.println(elem.get("brand"));
             if (elem.get("brand") != null){ 
                String laptopBrand = elem.get("brand");
                List<Laptop> brandLaptops = Laptop.searchByBrand(laptops, laptopBrand);
@@ -140,8 +136,7 @@ public class MainLaptop {
             System.out.println("Неверный ввод!");
             break;    
         }
-        // iScanner.close();
-        return criteria;
+         return criteria;
     }
 
     public static Map <Integer, Map<String, String>> CollectCriterias(){
@@ -163,7 +158,6 @@ public class MainLaptop {
                 break;
             case "1":
                 criteriasCollection.put(++position, ChoiceCriteria());
-                // String tempKey = toString().keySet(ChoiceCriteria());
                 System.out.printf("Добавить еще один критерий? 1 Да, (или нажмите Enter для отмемы)\n");
                 String str = iScanner.nextLine();
                 if (!str.isEmpty() && str.equals("1")){
