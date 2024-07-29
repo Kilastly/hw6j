@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Laptop {
     private String brand;
@@ -59,5 +62,41 @@ public class Laptop {
     public int hashCode() {
         return Objects.hash(brand, model, ramСapacity, hddСapacity);
         
+    }
+     public static List<Laptop> searchByBrand(Set<Laptop> laptops, String brand) {
+        List<Laptop> result = new ArrayList<>();
+        for (Laptop laptop : laptops) {
+            if (laptop.getBrand().equalsIgnoreCase(brand)) {
+                result.add(laptop);
+            }
+        }
+        return result;
+    }
+    public static List<Laptop> searchByModel (Set<Laptop> laptops, String model) {
+        List<Laptop> result = new ArrayList<>();
+        for (Laptop laptop : laptops) {
+            if (laptop.getModel().equalsIgnoreCase(model)) {
+                result.add(laptop);
+            }
+        }
+        return result;
+    }
+    public static List<Laptop> searchByHddCapacity(Set<Laptop> laptops, int hddCapacity) {
+        List<Laptop> result = new ArrayList<>();
+        for (Laptop laptop : laptops) {
+            if (laptop.getHddCapacity() >= hddCapacity) {
+                result.add(laptop);
+            }
+        }
+        return result;
+    }
+    public static List<Laptop> searchByRamCapacity(Set<Laptop> laptops, int ramCapacity) {
+        List<Laptop> result = new ArrayList<>();
+        for (Laptop laptop : laptops) {
+            if (laptop.getRamCapacity() >= ramCapacity) {
+                result.add(laptop);
+            }
+        }
+        return result;
     }
 }

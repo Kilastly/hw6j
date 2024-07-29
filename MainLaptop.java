@@ -20,6 +20,7 @@
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -38,7 +39,41 @@ public class MainLaptop {
         }
          
         // System.out.println(ChoiceCriteria());
-        System.out.println(CollectCriterias());
+        // System.out.println(CollectCriterias());
+        Map <Integer, Map<String, String>> temp = CollectCriterias();
+        // Map <String, String> criteriasColl = new HashMap<>();
+        // System.out.println(temp);
+        for (Map <String, String> elem : temp.values()) {
+            // System.out.println(elem.get("brand"));
+            if (elem.get("brand") != null){ 
+               String laptopBrand = elem.get("brand");
+               List<Laptop> brandLaptops = Laptop.searchByBrand(laptops, laptopBrand);
+               for (Laptop laptop : brandLaptops) {
+                    System.out.println(laptop);
+                }            
+            }
+            else if (elem.get("model") != null){
+                String laptopModel = elem.get("model");
+                List<Laptop> modelLaptops = Laptop.searchByModel(laptops, laptopModel);
+                for (Laptop laptop : modelLaptops) {
+                    System.out.println(laptop);
+                }
+            }
+            else if (elem.get("ramСapacity") != null){
+                int laptopRam = Integer.parseInt(elem.get("ramСapacity"));
+                List<Laptop> ramLaptops = Laptop.searchByRamCapacity(laptops, laptopRam);
+                for (Laptop laptop : ramLaptops) {
+                    System.out.println(laptop);
+                }
+            }
+            else if (elem.get("hddСapacity") != null){
+                int laptopHdd = Integer.parseInt(elem.get("hddСapacity"));
+                List<Laptop> hddLaptops = Laptop.searchByHddCapacity(laptops, laptopHdd);
+                for (Laptop laptop : hddLaptops) {
+                    System.out.println(laptop);
+                }
+            }
+        }
         
     }
 
@@ -128,6 +163,7 @@ public class MainLaptop {
                 break;
             case "1":
                 criteriasCollection.put(++position, ChoiceCriteria());
+                // String tempKey = toString().keySet(ChoiceCriteria());
                 System.out.printf("Добавить еще один критерий? 1 Да, (или нажмите Enter для отмемы)\n");
                 String str = iScanner.nextLine();
                 if (!str.isEmpty() && str.equals("1")){
